@@ -1,15 +1,19 @@
-const express = require('express');
-
 if (!process.env.PRODUCTION){
     require('dotenv').config();
 }
 
+const express = require('express');
+
+require('./util/db');
 const { PORT } = process.env;
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('hi');
+app.use(express.json());
+
+app.post('/room/new', (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
 });
 
 app.listen(PORT, () => {
