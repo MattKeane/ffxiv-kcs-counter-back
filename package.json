@@ -1,0 +1,11 @@
+{
+  "name": "ffxiv-kcs-counter-back",
+  "version": "1.0.0",
+  "description": "a counter for kill count s rank spawns in ffxiv",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matt Keane",
+  "license": "ISC"
+}
