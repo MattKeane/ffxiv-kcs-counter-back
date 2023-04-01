@@ -14,7 +14,7 @@ const spawnAttemptSchema = new mongoose.Schema({
     statics: {
         async createNew() {
             // creates a new room with a random unique room code
-            const alphabet = 'abcdefghijklmnopqurstuvwxyz';
+            const alphabet = 'abcdefghijklmnopqrstuvwxyz';
             let room = '';
             while (room.length < 4) {
                 const randomChoice = Math.floor(Math.random() * alphabet.length);
