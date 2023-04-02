@@ -4,7 +4,7 @@ if (!process.env.PRODUCTION){
 
 const express = require('express');
 
-const SpawnAttempt = require('./models/SpawnAttempt');
+const Ruminator = require('./models/Ruminator');
 
 require('./util/db');
 const { PORT } = process.env;
@@ -15,7 +15,7 @@ app.use(express.json());
 
 app.post('/room/new', async (req, res) => {
     try {
-        const newSpawnAttempt = await SpawnAttempt.createNew();
+        const newSpawnAttempt = await Ruminator.createNew();
         console.log(newSpawnAttempt);
         res.json(newSpawnAttempt)
     } catch (err) {
