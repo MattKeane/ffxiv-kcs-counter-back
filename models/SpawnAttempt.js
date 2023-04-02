@@ -23,7 +23,6 @@ const spawnAttemptSchema = new mongoose.Schema({
                 if (room.length === 4) {
                     try {
                         const createdRoom = await this.create({ room });
-                        console.log(createdRoom);
                         return createdRoom;
                     } catch (err) {
                         if (err.name === 'MongoError' && err.code === 11000) {

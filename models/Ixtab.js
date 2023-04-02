@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const SpawnAttempt = require('./SpawnAttempt');
 
-const ixtabSchema = new mongoose.schema({
+const ixtabSchema = new mongoose.Schema({
     mobs: {
         'Cracked Ronkan Doll': {
             type: Number,
