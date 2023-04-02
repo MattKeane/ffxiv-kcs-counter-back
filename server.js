@@ -3,6 +3,8 @@ if (!process.env.PRODUCTION){
 }
 
 const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
 
 const Ruminator = require('./models/Ruminator');
 const Sphatika = require('./models/Sphatika');
@@ -16,8 +18,14 @@ require('./util/db');
 const { PORT } = process.env;
 
 const app = express();
+const server = http.createServer(app);
 
 app.use(express.json());
+
+const io = new Server(server);
+
+const spawnAttemptHandler = require('./handlers/spawnAttemptHandler');
+io.of('/spawn').on('connection', socket => spawnAttemptHandler(io, socket));
 
 app.post('/room/new', async (req, res) => {
     try {
@@ -32,7 +40,6 @@ app.post('/room/new', async (req, res) => {
         };
         const { sRank } = req.body;
         const newSpawnAttempt = await sRanks[sRank].createNew();
-        console.log(newSpawnAttempt);
         res.json(newSpawnAttempt)
     } catch (err) {
         console.log(err);
@@ -40,7 +47,7 @@ app.post('/room/new', async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     const d = new Date();
     console.log(`${d.toLocaleString()} now listening on port ${PORT}`);
 });
