@@ -5,6 +5,12 @@ if (!process.env.PRODUCTION){
 const express = require('express');
 
 const Ruminator = require('./models/Ruminator');
+const Sphatika = require('./models/Sphatika');
+const Ixtab = require('./models/Ixtab');
+const Udumbara = require('./models/Udumbara');
+const Okina = require('./models/Okina');
+const Leucrotta = require('./models/Leucrotta');
+const Minhocao = require('./models/Minhocao');
 
 require('./util/db');
 const { PORT } = process.env;
@@ -15,7 +21,17 @@ app.use(express.json());
 
 app.post('/room/new', async (req, res) => {
     try {
-        const newSpawnAttempt = await Ruminator.createNew();
+        const sRanks = {
+            Ruminator,
+            Sphatika,
+            Ixtab,
+            Udumbara,
+            Okina,
+            Leucrotta,
+            Minhocao,
+        };
+        const { sRank } = req.body;
+        const newSpawnAttempt = await sRanks[sRank].createNew();
         console.log(newSpawnAttempt);
         res.json(newSpawnAttempt)
     } catch (err) {
