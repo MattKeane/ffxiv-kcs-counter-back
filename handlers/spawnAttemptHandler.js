@@ -1,6 +1,16 @@
 const SpawnAttempt = require('../models/SpawnAttempt');
 
 function spawnAttemptHandler(io, socket) {
+    const emitUpdate = async (room, mob) => {
+        try {
+            const updatedRoom = await SpawnAttempt.findOne({ room });
+            const mobCount = updatedRoom.mobs[mob];
+            io.of('/spawn').to(room).emit(`update:${mob}`, mobCount);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     socket.on('joinRoom', async (roomCode, res) => {
         // handles a user joining a room
         try {
@@ -19,24 +29,20 @@ function spawnAttemptHandler(io, socket) {
                 status: 'error'
             });
         }
-    })
+    });
 
     socket.on('increment', async (room, mob, amount) => {
-        // handles incrementing mobs
+        // handles incrementing (and decrementing) mobs
         try {
-            console.log(room);
-            console.log(mob);
-            console.log(amount);
             const mobField = `mobs.${mob}`;
-            console.log(mobField);
-            const roomToUpdate = await SpawnAttempt.findOne({ room })
+            const roomToUpdate = await SpawnAttempt.findOne({ room });
             roomToUpdate.$inc(mobField, amount);
             await roomToUpdate.save();
-            console.log(roomToUpdate);
+            emitUpdate(room, mob);
         } catch (err) {
             console.log(err);
         }
-    })
+    });
 }
 
 module.exports = spawnAttemptHandler;
