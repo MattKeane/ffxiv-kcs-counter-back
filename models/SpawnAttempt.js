@@ -32,6 +32,21 @@ const spawnAttemptSchema = new mongoose.Schema({
                 }
             }
         }
+    },
+    toJSON: {
+        transform: function(doc, spawnAttempt) {
+            const mobs = [];
+            for (const mob in spawnAttempt.mobs) {
+                mobs.push({
+                    name: mob,
+                    count: spawnAttempt.mobs[mob],
+                });
+            }
+            return {
+                name: spawnAttempt.__t,
+                mobs,
+            };
+        }
     }
 });
 

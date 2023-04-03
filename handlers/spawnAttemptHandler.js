@@ -4,10 +4,21 @@ function spawnAttemptHandler(io, socket) {
     socket.on('joinRoom', async (roomCode, res) => {
         // handles a user joining a room
         try {
-            const spawnAttempt = await SpawnAttempt.findOne({ room: roomCode });
-            socket.join(spawnAttempt.room);
+            const sRank = await SpawnAttempt.findOne({ room: roomCode });
+            socket.join(sRank.room);
+            // const mobs = [];
+            // for (const mob in spawnAttempt.mobs.toObject()) {
+            //     mobs.push({
+            //         name: mob,
+            //         count: mobs[mob],
+            //     });
+            // }
+            // const sRank = {
+            //     mobs,
+            //     name: spawnAttempt.__t,
+            // };
             res({
-                spawnAttempt,
+                sRank,
                 status: 'ok',
             });
         } catch (err) {
@@ -15,7 +26,7 @@ function spawnAttemptHandler(io, socket) {
             console.log(`${d.toLocaleString()}: Error joining room`);
             console.log(err);
             res({
-                spawnAttempt: null,
+                sRank: null,
                 status: 'error'
             });
         }
