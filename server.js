@@ -14,11 +14,13 @@ const server = http.createServer(app);
 
 app.use(express.json());
 
+// socket.io
 const io = new Server(server);
 
 const spawnAttemptHandler = require('./handlers/spawnAttemptHandler');
 io.of('/spawn').on('connection', socket => spawnAttemptHandler(io, socket));
 
+// REST
 const roomController = require('./controllers/roomController');
 app.post('/room/new', roomController);
 

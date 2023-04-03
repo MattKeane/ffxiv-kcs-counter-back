@@ -2,6 +2,7 @@ const SpawnAttempt = require('../models/SpawnAttempt');
 
 function spawnAttemptHandler(io, socket) {
     socket.on('joinRoom', async (roomCode, res) => {
+        // handles a user joining a room
         try {
             const spawnAttempt = await SpawnAttempt.findOne({ room: roomCode });
             socket.join(spawnAttempt.room);

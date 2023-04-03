@@ -17,6 +17,7 @@ const sRanks = {
 };
 
 async function roomController(req, res) {
+    // creates a new room to attempt spawning a given s rank
     try {
         const { sRank } = req.body;
         const newSpawnAttempt = await sRanks[sRank].createNew();
