@@ -6,17 +6,6 @@ function spawnAttemptHandler(io, socket) {
         try {
             const sRank = await SpawnAttempt.findOne({ room: roomCode });
             socket.join(sRank.room);
-            // const mobs = [];
-            // for (const mob in spawnAttempt.mobs.toObject()) {
-            //     mobs.push({
-            //         name: mob,
-            //         count: mobs[mob],
-            //     });
-            // }
-            // const sRank = {
-            //     mobs,
-            //     name: spawnAttempt.__t,
-            // };
             res({
                 sRank,
                 status: 'ok',
@@ -29,6 +18,23 @@ function spawnAttemptHandler(io, socket) {
                 sRank: null,
                 status: 'error'
             });
+        }
+    })
+
+    socket.on('increment', async (room, mob, amount) => {
+        // handles incrementing mobs
+        try {
+            console.log(room);
+            console.log(mob);
+            console.log(amount);
+            const mobField = `mobs.${mob}`;
+            console.log(mobField);
+            const roomToUpdate = await SpawnAttempt.findOne({ room })
+            roomToUpdate.$inc(mobField, amount);
+            await roomToUpdate.save();
+            console.log(roomToUpdate);
+        } catch (err) {
+            console.log(err);
         }
     })
 }
