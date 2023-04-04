@@ -21,7 +21,7 @@ async function roomController(req, res) {
     try {
         const { sRank } = req.body;
         const newSpawnAttempt = await sRanks[sRank].createNew();
-        res.json(newSpawnAttempt)
+        res.json(newSpawnAttempt);
     } catch (err) {
         console.log(err);
         res.json({ err });

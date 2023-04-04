@@ -43,6 +43,7 @@ const spawnAttemptSchema = new mongoose.Schema({
                 });
             }
             return {
+                room: spawnAttempt.room,
                 name: spawnAttempt.__t,
                 mobs,
             };
