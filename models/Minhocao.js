@@ -6,6 +6,8 @@ const minhocaoSchema = new mongoose.Schema({
         'Earth Sprite': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         }
     }
 });

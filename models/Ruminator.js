@@ -6,14 +6,20 @@ const ruminatorSchema = new mongoose.Schema({
         Weeper: {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         Thinker: {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         Wanderer: {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
     },
 });

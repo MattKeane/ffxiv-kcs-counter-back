@@ -6,14 +6,20 @@ const leucrottaSchema = new mongoose.Schema({
         'Allagan Chimera': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         'Meracydian Vouivre': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         'Lesser Hydra': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
     }
 });

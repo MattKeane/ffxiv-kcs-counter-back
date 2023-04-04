@@ -6,14 +6,20 @@ const ixtabSchema = new mongoose.Schema({
         'Cracked Ronkan Doll': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         'Cracked Ronkan Thorn': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         'Cracked Ronkan Vessel': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
     }
 });

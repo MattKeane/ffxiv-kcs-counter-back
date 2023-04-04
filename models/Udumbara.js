@@ -6,10 +6,14 @@ const udumbaraSchema = new mongoose.Schema({
         Leshy: {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         Diakka: {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
     }
 });

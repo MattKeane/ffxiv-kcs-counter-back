@@ -6,10 +6,14 @@ const okinaSchema = new mongoose.Schema({
         'Yumemi': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
         'Naked Yumemi': {
             type: Number,
             default: 0,
+            min: 0,
+            max: 100,
         },
     }
 });
