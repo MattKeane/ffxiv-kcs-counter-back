@@ -1,7 +1,8 @@
 const SpawnAttempt = require('../models/SpawnAttempt');
+const debounce = require('../util/debounce');
 
 function spawnAttemptHandler(io, socket) {
-    const emitUpdate = async (room, mob) => {
+    const emitUpdate = debounce(async (room, mob) => {
         try {
             const updatedRoom = await SpawnAttempt.findOne({ room });
             const mobCount = updatedRoom.mobs[mob];
@@ -9,7 +10,7 @@ function spawnAttemptHandler(io, socket) {
         } catch (err) {
             console.log(err);
         }
-    };
+    });
 
     socket.on('joinRoom', async (roomCode, res) => {
         // handles a user joining a room
