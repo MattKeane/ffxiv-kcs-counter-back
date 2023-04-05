@@ -34,10 +34,7 @@ function spawnAttemptHandler(io, socket) {
     socket.on('increment', async (room, mob, amount) => {
         // handles incrementing (and decrementing) mobs
         try {
-            const mobField = `mobs.${mob}`;
-            const roomToUpdate = await SpawnAttempt.findOne({ room });
-            roomToUpdate.$inc(mobField, amount);
-            await roomToUpdate.save();
+            await SpawnAttempt.incrementMob(room, mob, amount);
             emitUpdate(room, mob);
         } catch (err) {
             console.log(err);

@@ -31,6 +31,17 @@ const spawnAttemptSchema = new mongoose.Schema({
                     }
                 }
             }
+        },
+        async incrementMob(room, mob, amount) {
+            // increments a mob's count by a given amount
+            const mobField = `mobs.${mob}`;
+            try {
+                const roomToUpdate = await this.findOne({ room });
+                roomToUpdate.$inc(mobField, amount);
+                return roomToUpdate.save();
+            } catch (err) {
+                throw new Error(err);
+            }        
         }
     },
     toJSON: {
