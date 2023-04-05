@@ -15,18 +15,27 @@ function spawnAttemptHandler(io, socket) {
         // handles a user joining a room
         try {
             const sRank = await SpawnAttempt.findOne({ room: roomCode });
-            socket.join(sRank.room);
-            res({
-                sRank,
-                status: 'ok',
-            });
+            if (sRank) {
+                socket.join(sRank.room);
+                res({
+                    sRank,
+                    status: 'ok',
+                });
+            } else {
+                res({
+                    sRank,
+                    status: 'error',
+                    error: 'Invalid room code',
+                })
+            }
         } catch (err) {
             const d = new Date();
             console.log(`${d.toLocaleString()}: Error joining room`);
             console.log(err);
             res({
                 sRank: null,
-                status: 'error'
+                status: 'error',
+                error: err,
             });
         }
     });
