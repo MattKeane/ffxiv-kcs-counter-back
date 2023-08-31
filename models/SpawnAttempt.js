@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+// This is the base model for all S rank spawn attempts
+// Specific S ranks are created as discriminators of this model
+// The schema for a specific S rank should be an object with a "mobs" property
+// The "mobs" property itself should be an object with properties named for each mob required
+// Those properties should each be Numbers
+
 const spawnAttemptSchema = new mongoose.Schema({
     room: {
         type: String,
