@@ -7,19 +7,19 @@ const leucrottaSchema = new mongoose.Schema({
             type: Number,
             default: 0,
             min: 0,
-            max: 100,
+            max: 50,
         },
         'Meracydian Vouivre': {
             type: Number,
             default: 0,
             min: 0,
-            max: 100,
+            max: 50,
         },
         'Lesser Hydra': {
             type: Number,
             default: 0,
             min: 0,
-            max: 100,
+            max: 50,
         },
     }
 });
