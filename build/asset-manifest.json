@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/static/css/main.df468055.css",
-    "main.js": "/static/js/main.9aae1c7a.js",
+    "main.js": "/static/js/main.44f557d7.js",
     "static/js/787.c45a1b00.chunk.js": "/static/js/787.c45a1b00.chunk.js",
     "static/media/bg-sprite4.png": "/static/media/bg-sprite4.7d0d8bd52348e7ef952d.png",
     "static/media/logo-teamspawn.png": "/static/media/logo-teamspawn.485a246fc606366aa656.png",
     "index.html": "/index.html",
     "main.df468055.css.map": "/static/css/main.df468055.css.map",
-    "main.9aae1c7a.js.map": "/static/js/main.9aae1c7a.js.map",
+    "main.44f557d7.js.map": "/static/js/main.44f557d7.js.map",
     "787.c45a1b00.chunk.js.map": "/static/js/787.c45a1b00.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.df468055.css",
-    "static/js/main.9aae1c7a.js"
+    "static/js/main.44f557d7.js"
   ]
 }
